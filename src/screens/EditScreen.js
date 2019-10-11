@@ -15,8 +15,6 @@ const EditScreen = ({ navigation }) => {
       button="Save Blog"
       initialValue={{ title, content }}
       onSubmit={(title, content) => {
-        console.log("title", title);
-        console.log("content", content);
         editBlogToPost(id, title, content, () => navigate("Index"));
       }}
     />

@@ -30,7 +30,7 @@ ShowScreen.navigationOptions = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   titleStyle: { fontSize: 20, fontWeight: "bold" },
-  viewStyle: { paddingVertical: 5 }
+  viewStyle: { padding: 20 }
 });
 
 export default ShowScreen;

@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
-  Button,
   TouchableOpacity
 } from "react-native";
 // import BlogContext from "../context/BlogContext";
@@ -12,8 +11,17 @@ import { Context } from "../context/BlogContext";
 import { Feather } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
-  const { state, deleteBlogPost } = useContext(Context);
+  const { state, deleteBlogPost, getBlogPost } = useContext(Context);
   const { navigate } = navigation;
+  useEffect(() => {
+    getBlogPost();
+    const listner = navigation.addListener("didFocus", () => {
+      getBlogPost();
+    });
+    return () => {
+      listner.remove();
+    };
+  }, []);
   return (
     <View>
       <FlatList
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
   blogViewStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 20,
+    padding: 20,
     borderColor: "gray",
     borderBottomWidth: 1
   },
